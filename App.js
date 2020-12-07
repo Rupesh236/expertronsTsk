@@ -18,7 +18,11 @@ function Assignment() {
   );
   const [getError, setError] = useState('');
   const [getResult, setResult] = useState('');
-  const Question = ['Pigeon', 'Grapes', 'Nature'];
+  const Question = [
+    'Pigeon is bird',
+    'Grapes is fruit',
+    'Nature is our Mother',
+  ];
   const Data = [
     'https://images.all-free-download.com/footage_preview/webm/pigeon_107.webm',
     'https://images.all-free-download.com/footage_preview/webm/merlot_grape_145.webm',
@@ -37,9 +41,13 @@ function Assignment() {
   }, []);
 
   const afterEnd = (res) => {
+    console.log(typeof res);
     Question.map((question, index) => {
+      console.log(question.toLowerCase());
       if (res == question.toLowerCase()) {
         setEnd(Data[index]);
+      } else {
+        console.log('somting is wrong');
       }
     });
   };
@@ -58,7 +66,7 @@ function Assignment() {
   };
 
   const SpeechResult = (event) => {
-    console.log('SpeechResult: ', event.value[0]);
+    console.log('SpeechResult:', event.value[0]);
     setResult(event.value[0]);
     //setEnd(event.value[0]);
     afterEnd(event.value[0].toLowerCase());
@@ -90,19 +98,19 @@ function Assignment() {
           <TouchableOpacity onPress={() => setEnd(Data[0])}>
             <Icons name="play-circle-outline" size={20} color="blue"></Icons>
           </TouchableOpacity>
-          <Text style={styles.styleTxt}>Pigeon</Text>
+          <Text style={styles.styleTxt}>{Question[0]}</Text>
         </View>
         <View style={styles.styleTxtView}>
           <TouchableOpacity onPress={() => setEnd(Data[1])}>
             <Icons name="play-circle-outline" size={20} color="blue"></Icons>
           </TouchableOpacity>
-          <Text style={styles.styleTxt}>Grapes</Text>
+          <Text style={styles.styleTxt}>{Question[1]}</Text>
         </View>
         <View style={styles.styleTxtView}>
           <TouchableOpacity onPress={() => setEnd(Data[2])}>
             <Icons name="play-circle-outline" size={20} color="blue"></Icons>
           </TouchableOpacity>
-          <Text style={styles.styleTxt}>Nature</Text>
+          <Text style={styles.styleTxt}>{Question[2]}</Text>
         </View>
       </View>
       <TouchableOpacity
